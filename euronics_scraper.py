@@ -4,10 +4,14 @@ Web Scraper to extract companies data from www.euronics.it/tv-e-audio/tv/smart-t
 Author: Maria Dancianu
 """
 
-from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import pandas as pd 
 from time import sleep 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+options = Options()
+options.add_argument("--headless")
 
 
 def get_url_soup(url, crawling_delay=5):
@@ -16,7 +20,7 @@ def get_url_soup(url, crawling_delay=5):
     Args:
       homepage_url: string
           URL of the website to be scraped. 
-      crawling_delay: int, optional, Default = 5 
+      crawling_delay: int, optional, Default = 5  
           Waiting time, in seconds, before crawling the website page. 
           This is required to avoid causing performance issues to the 
           website. 
@@ -27,11 +31,10 @@ def get_url_soup(url, crawling_delay=5):
     """
     
     sleep(crawling_delay)
-
-    page = urlopen(url)
-    html_bytes = page.read()
-    html = html_bytes.decode("utf-8")
-    soup = BeautifulSoup(html, "html.parser")
+    
+    browser = webdriver.Chrome(options=options)
+    browser.get(url)
+    soup = BeautifulSoup(browser.page_source, "html.parser")
     
     return soup
 
@@ -74,6 +77,8 @@ def get_pages_url_list(homepage_url):
     urls_list = []
 
     number_of_pages = get_website_num_pages(homepage_url)
+
+    print(f"Number of pages to scrape: {number_of_pages}")
     
     for page in range(1, number_of_pages + 1):
         if page == 1:
@@ -151,10 +156,12 @@ def scrape_smart_tv_reviews(product):
     
     soup = get_url_soup(new_url)
             
-    div = soup.findAll('div', class_="bv-content-summary-body-text")
+    div = soup.findAll('div', attrs={'class': 'bv-content-summary-body-text'})
 
     smart_tv_reviews = [l.text for l in div]
-   
+
+    print(len(smart_tv_reviews))
+    
     return smart_tv_reviews
     
 
@@ -204,6 +211,8 @@ def EuronicsSmartTVDataScraper():
     pages_url_list = get_pages_url_list(homepage_url)
     
     for page_url in pages_url_list:
+        print(f'Scraping data from page: {page_url}')
+        
         soup = get_url_soup(page_url)
         
         page_smart_tvs_list = scrape_page_smart_tvs(soup)
