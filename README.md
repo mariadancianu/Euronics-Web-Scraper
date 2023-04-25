@@ -23,7 +23,7 @@ Python version: 3.11.
 
 Python libraries:
 - BeautifulSoup
-- urllib 
+- selenium
 - pandas
 - time
 
