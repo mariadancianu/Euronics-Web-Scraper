@@ -1,4 +1,4 @@
-# Euronics-Scraper
+# Euronics-Web-Scraper
 A web scraper to extract smart TV products data from www.euronics.it. 
 
 ![alt text](https://github.com/mariadancianu/Euronics-Scraper/blob/main/website_page.png)
