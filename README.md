@@ -15,7 +15,7 @@ It extracts the following information:
 - User reviews
 
 Expected output dataset:
-![alt text](https://github.com/mariadancianu/Euronics-Scraper/blob/main/output_dataset_example.png)
+![alt text](https://github.com/mariadancianu/Euronics-Scraper/blob/main/output_dataset_example_euronics.png)
 
 ## Technologies 
 
