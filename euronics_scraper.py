@@ -10,8 +10,7 @@ import pandas as pd
 from time import sleep 
 
 
-def get_url_soup(url, 
-                 crawling_delay=5):
+def get_url_soup(url, crawling_delay=5):
     """Opens the website and returns a BeautifulSoup object.
     
     Args:
@@ -165,7 +164,7 @@ def scrape_page_smart_tvs(soup, scrape_reviews=True):
     Args:
       soup: BeautifulSoup object
           BeautifulSoup object representing the page to be scraped. 
-      scrape_reviews: boolean, optional, Default=False
+      scrape_reviews: boolean, optional, Default=True
           If True scrape also the reviews. 
       
     Returns:
@@ -224,7 +223,4 @@ def EuronicsSmartTVDataScraper():
     
 if __name__ == '__main__':
     EuronicsSmartTVDataScraper()
-
-
-
 
