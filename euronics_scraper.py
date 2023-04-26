@@ -1,5 +1,5 @@
 """
-Web Scraper to extract companies data from www.euronics.it/tv-e-audio/tv/smart-tv/.
+Web Scraper to extract smart TVs data from www.euronics.it/tv-e-audio/tv/smart-tv/.
 
 Author: Maria Dancianu
 """
